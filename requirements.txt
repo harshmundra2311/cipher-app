@@ -1,0 +1,2 @@
+# No external libraries required for current version
+# Python 3.x (Tkinter comes pre-installed)
