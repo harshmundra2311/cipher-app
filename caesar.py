@@ -1,13 +1,22 @@
-alphabet= 'abcdefghijklmnopqrstuvwxyz'
-def caesar(message, key, direction=1):
-    encrypted = ''
-    for ch in message.lower():
-        if not ch.isalpha():
-            encrypted+=ch
+def caesar(text,offset,direction=1):
+    alphabet="abcdefghijklmnopqrstuvwxyz"
+    char_index=0
+    encrypted_text=""
+    for char in text:
+        flag=char.isupper()
+        base_char=char.lower()
+        if not char.isalpha():
+            encrypted_text+=char
         else:
-            encrypted+= alphabet[(alphabet.index(ch)+key*direction)%len(alphabet)]
-    return encrypted
-def encrypt(message,key):
-    return caesar(message,key)
-def decrypt(message,key):
-    return caesar(message, key, -1)
+            char_index=alphabet.find(base_char)
+            new_index=char_index+offset*direction
+            if flag:
+                encrypted_text+=alphabet[new_index%len(alphabet)].upper()
+            else:
+                encrypted_text+=alphabet[new_index%len(alphabet)]
+    return encrypted_text
+def encrypt(text,offset):
+    return caesar(text,offset,1)
+def decrypt(text,offset):
+    return caesar(text,offset,-1)
+
